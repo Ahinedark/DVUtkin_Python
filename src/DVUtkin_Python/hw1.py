@@ -1,6 +1,6 @@
+"""Домашнее задание 1. Уткин Д.В."""
 class CustomerDataClass:
-   """Класс для информации о покупателях.
-   """
+   """Класс для информации о покупателях."""
 
    def __init__(self,customer_id, customer_name):
       """Конструктор для CustomerDataClass.
@@ -34,8 +34,7 @@ class CustomerDataClass:
 
 
 class OrderDataClass:
-   """Класс для информации о заказах.
-   """
+   """Класс для информации о заказах."""
 
    def __init__(self, order_id, amount):
       """Конструктор для OrderDataClass.
@@ -60,10 +59,7 @@ def calculate_discount(customer_obj):
       discount (float): Скидка
    """
    total_amount = customer_obj.get_total_amount()
-   if total_amount > 1000:
-      discount = total_amount * 0.1
-   else:
-      discount = 0
+   discount = total_amount * 0.1 if total_amount > 1000 else 0
    return discount
 
 
@@ -75,27 +71,32 @@ def print_customer_report(customer_obj):
    Args:
       customer_obj (CustomerDataClass): Покупатель
    """
-   print("Customer Report for:", customer_obj.customer_name)
-   print("Total Orders:", len(customer_obj.orders))
-   print("Total Amount:", customer_obj.get_total_amount())
-   print("Discount:", calculate_discount(customer_obj))
-   print("Average Order:", end = ' ')
+   print('Customer Report for:', customer_obj.customer_name)
+   print('Total Orders:', len(customer_obj.orders))
+   print('Total Amount:', customer_obj.get_total_amount())
+   print('Discount:', calculate_discount(customer_obj))
+   print('Average Order:', end = ' ')
    if len(customer_obj.orders) > 0:
       print(customer_obj.get_total_amount() / len(customer_obj.orders))
    else:
-      print("0")
+      print('0')
 
 
-def MainProgram():
-   c1 = CustomerDataClass(1, "SAP Customer")
+def main_program():
+   """Главная функция.
+   
+   Создать покупателя с 2 заказами и покупателя без заказов,
+   вывести информацию о покупателях.
+   """
+   c1 = CustomerDataClass(1, 'SAP Customer')
    o1 = OrderDataClass(101, 500)
    o2 = OrderDataClass(102, 800)
    c1.add_order(o1)
    c1.add_order(o2)
    print_customer_report(c1)
 
-   c2 = CustomerDataClass(2, "Empty Customer")
+   c2 = CustomerDataClass(2, 'Empty Customer')
    print_customer_report(c2) 
 
 
-MainProgram()
+main_program()
